@@ -13,7 +13,6 @@ L'approche de ce projet est entièrement déclarative et repose sur trois pilier
 
 ```text
 .
-.
 ├── ansible/
 │   ├── ansible.cfg
 │   ├── inventory.ini
