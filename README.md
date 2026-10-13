@@ -13,12 +13,27 @@ L'approche de ce projet est entièrement déclarative et repose sur trois pilier
 
 ```text
 .
-├── terraform/       # Fichiers HCL (provider, variables, outputs, resources, data)
-├── ansible/         # Playbook et rôles Ansible (k3s-prereq, k3s, kubeconfig)
-├── helm/            # Charts Helm de l'application NovaShop
-│   ├── postgres/    # Base de données (StatefulSet, PVC)
-│   ├── backend/     # API Python (Déploiement multi-réplicas, ConfigMap)
-│   └── frontend/    # Serveur Web Nginx (Ingress Traefik, Load-Balancing)
-└── README.md
+.
+├── ansible/
+│   ├── ansible.cfg
+│   ├── inventory.ini
+│   ├── playbook.yml
+│   ├── tunnel.sh
+│   └── roles/
+│       ├── k3s/
+│       ├── k3s-prereq/
+│       └── kubeconfig/
+├── helm/
+│   ├── backend/
+│   ├── frontend/
+│   └── postgres/
+└── terraform/
+    ├── cloud-init.yaml
+    ├── compute.tf
+    ├── data.tf
+    ├── outputs.tf
+    ├── providers.tf
+    ├── security.tf
+    └── variables.tf
 
 ```
