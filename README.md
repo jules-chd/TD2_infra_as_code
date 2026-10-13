@@ -20,3 +20,5 @@ L'approche de ce projet est entièrement déclarative et repose sur trois pilier
 │   ├── backend/     # API Python (Déploiement multi-réplicas, ConfigMap)
 │   └── frontend/    # Serveur Web Nginx (Ingress Traefik, Load-Balancing)
 └── README.md
+
+```
