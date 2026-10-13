@@ -1,0 +1,29 @@
+# Installation de K3s
+
+- name: Telecharger le script d'installation K3s
+  ansible.builtin.get_url:
+    url: https://get.k3s.io
+    dest: /tmp/install_k3s.sh
+    mode: '0755'
+
+- name: Installer K3s (serveur)
+  ansible.builtin.command:
+    cmd: /tmp/install_k3s.sh
+  environment:
+    INSTALL_K3S_EXEC: "--write-kubeconfig-mode 644"
+  args:
+    creates: /usr/local/bin/k3s
+  become: true
+
+- name: Verifier que le service k3s est actif et active au demarrage
+  ansible.builtin.systemd:
+    name: k3s
+    state: started
+    enabled: true
+  become: true
+
+- name: Attendre que le noeud soit Ready (peut prendre 30s)
+  ansible.builtin.command:
+    cmd: /usr/local/bin/k3s kubectl wait --for=condition=Ready node --all --timeout=120s
+  changed_when: false
+  become: true

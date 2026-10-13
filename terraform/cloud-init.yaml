@@ -1,0 +1,12 @@
+#cloud-config
+ssh_pwauth: true
+chpasswd:
+  expire: false
+users:
+  - default
+  - name: ubuntu
+    password: azerty
+    type: text
+runcmd:
+  - sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config.d/*.conf /etc/ssh/sshd_config
+  - systemctl restart ssh
